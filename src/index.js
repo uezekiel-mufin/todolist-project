@@ -1,5 +1,6 @@
 import './style.css';
-import NewTodo from '../modules/crud.js';
+import NewTodo, { deleteCompletedTodos } from '../modules/crud.js';
+import createTodo from '../modules/create.js';
 
 const form = document.getElementById('form');
 export const todo = document.querySelector('.add_todo');
@@ -43,34 +44,15 @@ form.addEventListener('submit', (e) => {
 });
 
 // functionality to clear all the todos
-// deleteButton.addEventListener
+deleteButton.addEventListener('click', () => {
+  deleteCompletedTodos();
+});
 
 const displayTodos = () => {
-  for (let i = 0; i < todoListss.length; i += 1) {
-    const item = todoListss[i];
-    const itemContainer = document.createElement('li');
-    itemContainer.className = 'todo';
-    const todoTitle = document.createElement('h3');
-    todoTitle.className = 'todo_title';
-    todoTitle.innerText = item.description;
-    const checkBox = document.createElement('input');
-    checkBox.type = 'checkbox';
-    checkBox.checked = item.completed;
-    checkBox.className = 'checkbox';
-    const option = document.createElement('span');
-    option.className = 'material-symbols-outlined';
-    option.innerText = 'more_vert';
-
-    const div = document.createElement('div');
-    div.appendChild(checkBox);
-    div.appendChild(todoTitle);
-    div.className = 'todo_right';
-
-    itemContainer.appendChild(div);
-    itemContainer.appendChild(option);
-
-    todoUl.appendChild(itemContainer);
-  }
+  todoListss.forEach((todo, ind) => {
+    todo.id = ind + 1;
+    createTodo(todo);
+  });
 };
 
 window.addEventListener('load', () => {

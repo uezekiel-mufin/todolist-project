@@ -11,8 +11,15 @@ export default class NewTodo {
     const item = {
       id: this.id,
       description: this.description,
+      completed: false,
     };
     createTodo(item);
     todoListss.push(item);
   };
 }
+
+export const deleteCompletedTodos = () => {
+  const newTodos = todoListss.filter((item, ind) => item.completed !== true);
+  localStorage.setItem('todos', JSON.stringify(newTodos));
+  window.location.reload();
+};
