@@ -1,38 +1,53 @@
 import './style.css';
+import NewTodo from '../modules/crud.js';
 
-const todoUl = document.getElementById('todoList');
+const form = document.getElementById('form');
+export const todo = document.querySelector('.add_todo');
+export const todoUl = document.getElementById('todoList');
+export const todoListss = JSON.parse(localStorage.getItem('todos')) || [];
+const deleteButton = document.getElementById('clear_button');
 
-const todoLists = [
-  {
-    id: 1,
-    description: 'Connect to microverse morning call',
-    completed: true,
-  },
-  {
-    id: 2,
-    description: 'connect to microverse stand up call',
-    completed: false,
-  },
-  {
-    id: 3,
-    description: 'Prepare breakfast',
-    completed: false,
-  },
-  {
-    id: 4,
-    description: 'watch a youtube video on webpack',
-    completed: true,
-  },
-  {
-    id: 5,
-    description: 'have my bath',
-    completed: true,
-  },
-];
+// const todoLists = [
+//   {
+//     id: 1,
+//     description: 'Connect to microverse morning call',
+//     completed: true,
+//   },
+//   {
+//     id: 2,
+//     description: 'connect to microverse stand up call',
+//     completed: false,
+//   },
+//   {
+//     id: 3,
+//     description: 'Prepare breakfast',
+//     completed: false,
+//   },
+//   {
+//     id: 4,
+//     description: 'watch a youtube video on webpack',
+//     completed: true,
+//   },
+//   {
+//     id: 5,
+//     description: 'have my bath',
+//     completed: true,
+//   },
+// ];
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const newTodo = new NewTodo(todo.value);
+  newTodo.add();
+  localStorage.setItem('todos', JSON.stringify(todoListss));
+});
+
+// functionality to clear all the todos
+// deleteButton.addEventListener
 
 const displayTodos = () => {
-  for (let i = 0; i < todoLists.length; i += 1) {
-    const item = todoLists[i];
+  for (let i = 0; i < todoListss.length; i += 1) {
+    const item = todoListss[i];
     const itemContainer = document.createElement('li');
     itemContainer.className = 'todo';
     const todoTitle = document.createElement('h3');
