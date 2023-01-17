@@ -10,9 +10,9 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      hash: true,
       title: 'TodoList App',
-      template: './src/index.html',
+      inject: false,
+      template: path.resolve(__dirname, 'src', 'index.html'),
       filename: 'index.html',
     }),
   ],
@@ -26,6 +26,7 @@ module.exports = {
   },
   devServer: {
     static: './dist',
+    hot: true,
   },
   mode: 'development',
 };
