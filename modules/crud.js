@@ -58,12 +58,12 @@ export const updateTodo = (input, id, itemForm, option, itemContainer) => {
       if (todo.disabled === false) {
         todo.icon = 'delete';
         option.innerText = todo.icon;
-
         option.style.cursor = 'pointer';
         itemForm.addEventListener('submit', (e) => {
           e.preventDefault();
           todo.description = input.value;
           input.disabled = true;
+          todo.icon = 'more_vert';
           option.innerText = 'more_vert';
           itemContainer.style.background = 'none';
           localStorage.setItem('todos', JSON.stringify(todoListss));
