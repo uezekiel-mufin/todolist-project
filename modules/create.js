@@ -1,34 +1,9 @@
-/* eslint-disable import/no-cycle */
-/* eslint-disable import/named */
-import { todoUl } from '../src/index.js';
 import { deleteTodo, updateTodo } from './crud.js';
 
-const createTodo = (item) => {
+const createTodo = (item, todoListss, todoUl) => {
   const itemContainer = document.createElement('li');
   itemContainer.className = 'todo';
   itemContainer.draggable = true;
-
-  //   itemContainer.addEventListener('drag', () => {
-  //     console.log('dragged');
-  //   });
-
-  //   itemContainer.addEventListener('dragstart', () => {
-  //     itemContainer.style.opacity = 0.4;
-  //   });
-  //   itemContainer.addEventListener('dragend', () => {
-  //     itemContainer.style.opacity = 1;
-  //   });
-
-  //   itemContainer.addEventListener('dragover', (e) => {
-  //     e.preventDefault();
-  //     return false;
-  //   });
-  //   itemContainer.addEventListener('dragenter', () => {
-  //     itemContainer.classList.add('over');
-  //   });
-  //   itemContainer.addEventListener('dragleave', () => {
-  //     itemContainer.classList.remove('over');
-  //   });
 
   const itemForm = document.createElement('form');
   itemForm.className = 'todo_form';
@@ -40,9 +15,6 @@ const createTodo = (item) => {
   checkBox.type = 'checkbox';
   checkBox.checked = item.completed;
   checkBox.className = 'checkbox';
-  //   checkBox.addEventListener('click', () => {
-  //     selectTodo(checkBox, todoTitle, item);
-  //   });
   const option = document.createElement('span');
   option.className = 'material-symbols-outlined';
   option.innerText = item.icon;
@@ -61,7 +33,7 @@ const createTodo = (item) => {
     if (el === 'more_vert' || el === 'checkbox') {
       return;
     }
-    updateTodo(todoTitle, item.id, itemForm, option, itemContainer);
+    updateTodo(todoTitle, item.id, itemForm, option, itemContainer, todoListss);
   });
 
   todoUl.appendChild(itemContainer);
@@ -71,7 +43,7 @@ const createTodo = (item) => {
     if (el.textContent === 'more_vert') {
       return;
     }
-    deleteTodo(item.id, itemContainer, todoUl);
+    deleteTodo(item.id, itemContainer, todoListss);
   });
 };
 export default createTodo;

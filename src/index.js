@@ -1,41 +1,30 @@
-/* eslint-disable import/no-cycle */
 import './style.css';
-import NewTodo from '../modules/crud.js';
 import createTodo from '../modules/create.js';
+// import NewTodo from '../modules/todoClass.js';
 
 const form = document.getElementById('form');
 export const todo = document.querySelector('.add_todo');
 export const todoUl = document.getElementById('todoList');
 export const todoListss = JSON.parse(localStorage.getItem('todos')) || [];
-// const deleteButton = document.getElementById('clear_button');
 
-// const todoLists = [
-//   {
-//     id: 1,
-//     description: 'Connect to microverse morning call',
-//     completed: true,
-//   },
-//   {
-//     id: 2,
-//     description: 'connect to microverse stand up call',
-//     completed: false,
-//   },
-//   {
-//     id: 3,
-//     description: 'Prepare breakfast',
-//     completed: false,
-//   },
-//   {
-//     id: 4,
-//     description: 'watch a youtube video on webpack',
-//     completed: true,
-//   },
-//   {
-//     id: 5,
-//     description: 'have my bath',
-//     completed: true,
-//   },
-// ];
+class NewTodo {
+  constructor(description) {
+    this.description = description;
+    this.id = todoListss.length + 1;
+  }
+
+  add = () => {
+    const item = {
+      id: this.id,
+      description: this.description,
+      completed: false,
+      disabled: true,
+      icon: 'more_vert',
+    };
+    createTodo(item, todoListss, todoUl);
+    todoListss.push(item);
+  };
+}
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -45,15 +34,10 @@ form.addEventListener('submit', (e) => {
   form.reset();
 });
 
-// functionality to clear all the todos
-// deleteButton.addEventListener('click', () => {
-//   deleteCompletedTodos();
-// });
-
 export const displayTodos = () => {
   todoListss.forEach((todo, ind) => {
     todo.id = ind + 1;
-    createTodo(todo);
+    createTodo(todo, todoListss, todoUl);
   });
 };
 
@@ -63,5 +47,3 @@ window.addEventListener('load', () => {
   displayTodos();
   return false;
 });
-
-console.log(todoListss);

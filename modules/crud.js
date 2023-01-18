@@ -1,26 +1,24 @@
-/* eslint-disable import/no-cycle */
-import createTodo from './create.js';
-import { todoListss } from '../src/index.js';
+// import { todoListss } from '../src/index.js';
 
 // logic to create new todo using javascript class
-export default class NewTodo {
-  constructor(description) {
-    this.description = description;
-    this.id = todoListss.length + 1;
-  }
+// export default class NewTodo {
+//   constructor(description) {
+//     this.description = description;
+//     this.id = todoListss.length + 1;
+//   }
 
-  add = () => {
-    const item = {
-      id: this.id,
-      description: this.description,
-      completed: false,
-      disabled: true,
-      icon: 'more_vert',
-    };
-    createTodo(item);
-    todoListss.push(item);
-  };
-}
+//   add = () => {
+//     const item = {
+//       id: this.id,
+//       description: this.description,
+//       completed: false,
+//       disabled: true,
+//       icon: 'more_vert',
+//     };
+//     createTodo(item);
+//     todoListss.push(item);
+//   };
+// }
 
 // reset todo id
 export const idReset = (lists) => {
@@ -29,16 +27,8 @@ export const idReset = (lists) => {
   });
 };
 
-// logic to delete all completed todos
-// export const deleteCompletedTodos = () => {
-//   const newTodos = todoListss.filter((item, ind) => item.completed !== true);
-//   idReset(newTodos);
-//   localStorage.setItem('todos', JSON.stringify(newTodos));
-//   window.location.reload();
-// };
-
 // logic to delete a single todo
-export const deleteTodo = (id, itemContainer) => {
+export const deleteTodo = (id, itemContainer, todoListss) => {
   const newTodos = todoListss.filter((item) => item.id !== id);
   localStorage.setItem('todos', JSON.stringify(newTodos));
   if (itemContainer.parentNode) {
@@ -47,7 +37,14 @@ export const deleteTodo = (id, itemContainer) => {
 };
 
 // logic to update the the description of a todo
-export const updateTodo = (input, id, itemForm, option, itemContainer) => {
+export const updateTodo = (
+  input,
+  id,
+  itemForm,
+  option,
+  itemContainer,
+  todoListss,
+) => {
   input.disabled = false;
   input.focus();
   itemContainer.style.background = 'rgb(224, 224, 149)';
@@ -72,21 +69,5 @@ export const updateTodo = (input, id, itemForm, option, itemContainer) => {
     } else {
       todo.disabled = true;
     }
-    // todoUl.innerHTML = '';
-    // displayTodos(todoListss);
   });
-  //   todoUl.innerHTML = '';
-  //   displayTodos(todoListss);
-  //   itemContainer.style.background = 'yellow';
 };
-
-// functionality to mark a todo as completed
-// export const selectTodo = (checkBox, todoTitle, item) => {
-//   if (checkBox.checked) {
-//     todoTitle.style.textDecoration = 'line-through';
-//     item.completed = true;
-//   } else {
-//     todoTitle.style.textDecoration = 'none';
-//     item.completed = false;
-//   }
-// };
