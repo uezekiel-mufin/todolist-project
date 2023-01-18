@@ -41,6 +41,7 @@ form.addEventListener('submit', (e) => {
   const newTodo = new NewTodo(todo.value);
   newTodo.add();
   localStorage.setItem('todos', JSON.stringify(todoListss));
+  form.reset();
 });
 
 // functionality to clear all the todos
@@ -54,6 +55,8 @@ const displayTodos = () => {
     createTodo(todo);
   });
 };
+
+// localStorage.removeItem('todos');
 
 window.addEventListener('load', () => {
   displayTodos();
