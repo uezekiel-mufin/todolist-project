@@ -64,14 +64,11 @@ main {
   height: max-content;
   background-color: inherit;
   padding: 10px 5px;
+  font-size: 1.3rem;
 }
 
 .todo_form {
   flex: 1;
-}
-
-input[class='todo_title']:disabled {
-  /* background-color: transparent; */
 }
 
 .todo_title:focus {
@@ -115,3 +112,7 @@ button {
 .header .material-symbols-outlined {
   cursor: pointer;
 }
+
+/* .over {
+  border: 3px dotted #666;
+} */

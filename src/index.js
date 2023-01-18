@@ -1,12 +1,13 @@
+/* eslint-disable import/no-cycle */
 import './style.css';
-import NewTodo, { deleteCompletedTodos } from '../modules/crud.js';
+import NewTodo from '../modules/crud.js';
 import createTodo from '../modules/create.js';
 
 const form = document.getElementById('form');
 export const todo = document.querySelector('.add_todo');
 export const todoUl = document.getElementById('todoList');
 export const todoListss = JSON.parse(localStorage.getItem('todos')) || [];
-const deleteButton = document.getElementById('clear_button');
+// const deleteButton = document.getElementById('clear_button');
 
 // const todoLists = [
 //   {
@@ -45,9 +46,9 @@ form.addEventListener('submit', (e) => {
 });
 
 // functionality to clear all the todos
-deleteButton.addEventListener('click', () => {
-  deleteCompletedTodos();
-});
+// deleteButton.addEventListener('click', () => {
+//   deleteCompletedTodos();
+// });
 
 export const displayTodos = () => {
   todoListss.forEach((todo, ind) => {
