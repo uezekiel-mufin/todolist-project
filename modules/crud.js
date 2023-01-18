@@ -1,25 +1,3 @@
-// import { todoListss } from '../src/index.js';
-
-// logic to create new todo using javascript class
-// export default class NewTodo {
-//   constructor(description) {
-//     this.description = description;
-//     this.id = todoListss.length + 1;
-//   }
-
-//   add = () => {
-//     const item = {
-//       id: this.id,
-//       description: this.description,
-//       completed: false,
-//       disabled: true,
-//       icon: 'more_vert',
-//     };
-//     createTodo(item);
-//     todoListss.push(item);
-//   };
-// }
-
 // reset todo id
 export const idReset = (lists) => {
   lists.forEach((todo, ind) => {
