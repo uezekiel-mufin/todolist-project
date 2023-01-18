@@ -62,6 +62,7 @@ main {
   border: none;
   flex: 1;
   height: max-content;
+  background-color: inherit;
   padding: 10px 5px;
 }
 
@@ -70,7 +71,7 @@ main {
 }
 
 input[class='todo_title']:disabled {
-  background-color: #fff;
+  /* background-color: transparent; */
 }
 
 .todo_title:focus {
@@ -93,6 +94,10 @@ ul {
   font-size: 100px;
 }
 
+#delete_icon {
+  cursor: pointer;
+}
+
 button {
   width: 100%;
   padding: 10px;
@@ -105,7 +110,6 @@ button {
 .material-symbols-outlined {
   font-size: 2rem;
   color: gray;
-  cursor: move;
 }
 
 .header .material-symbols-outlined {

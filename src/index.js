@@ -49,7 +49,7 @@ deleteButton.addEventListener('click', () => {
   deleteCompletedTodos();
 });
 
-const displayTodos = () => {
+export const displayTodos = () => {
   todoListss.forEach((todo, ind) => {
     todo.id = ind + 1;
     createTodo(todo);

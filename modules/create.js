@@ -1,5 +1,5 @@
 import { todoUl } from '../src/index.js';
-import { updateTodo } from './crud.js';
+import { deleteTodo, selectTodo, updateTodo } from './crud.js';
 
 const createTodo = (item) => {
   const itemContainer = document.createElement('li');
@@ -14,9 +14,13 @@ const createTodo = (item) => {
   checkBox.type = 'checkbox';
   checkBox.checked = item.completed;
   checkBox.className = 'checkbox';
+  checkBox.addEventListener('click', () => {
+    selectTodo(checkBox, todoTitle, item);
+  });
   const option = document.createElement('span');
   option.className = 'material-symbols-outlined';
-  option.innerText = 'more_vert';
+  option.innerText = item.icon;
+  option.style.cursor = option.innerText === 'more_vert' ? 'move' : 'pointer';
 
   const div = document.createElement('div');
   div.appendChild(checkBox);
@@ -26,23 +30,24 @@ const createTodo = (item) => {
   itemContainer.appendChild(itemForm);
   itemContainer.appendChild(option);
 
-  itemContainer.addEventListener('click', (e) => {
-    if (
-      e.target.innerText === 'more_vert' ||
-      e.target.className === 'checkbox'
-    ) {
+  itemForm.addEventListener('click', (e) => {
+    console.log(e.target);
+    const el = e.target.type;
+    if (el === 'more_vert' || el === 'checkbox') {
       return;
     }
-    updateTodo(
-      todoTitle,
-      item.disabled,
-      item.id,
-      itemForm,
-      option,
-      itemContainer
-    );
+    updateTodo(todoTitle, item.id, itemForm, option, itemContainer);
   });
 
   todoUl.appendChild(itemContainer);
+
+  option.addEventListener('click', (e) => {
+    const el = e.target;
+    if (el.textContent === 'more_vert') {
+      return;
+    }
+    console.log(el);
+    deleteTodo(item.id, itemContainer, todoUl);
+  });
 };
 export default createTodo;
