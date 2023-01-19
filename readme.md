@@ -57,7 +57,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [ ] None at the moment
+- [live demo](https://ezzywealth.github.io/todolist-project/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
