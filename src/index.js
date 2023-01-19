@@ -1,11 +1,17 @@
 import './style.css';
 import createTodo from '../modules/create.js';
-// import NewTodo from '../modules/todoClass.js';
+import { deleteCompletedTodos } from '../modules/crud2.js';
 
 const form = document.getElementById('form');
 export const todo = document.querySelector('.add_todo');
 export const todoUl = document.getElementById('todoList');
 export const todoListss = JSON.parse(localStorage.getItem('todos')) || [];
+const deleteButton = document.getElementById('clear_button');
+
+// functionality to clear all the todos
+deleteButton.addEventListener('click', () => {
+  deleteCompletedTodos(todoListss, todoUl);
+});
 
 class NewTodo {
   constructor(description) {
@@ -47,3 +53,5 @@ window.addEventListener('load', () => {
   displayTodos();
   return false;
 });
+
+console.log(todoListss);

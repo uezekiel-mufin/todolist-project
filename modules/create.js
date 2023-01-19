@@ -1,9 +1,34 @@
 import { deleteTodo, updateTodo } from './crud.js';
+import { selectTodo } from './crud2.js';
 
 const createTodo = (item, todoListss, todoUl) => {
   const itemContainer = document.createElement('li');
   itemContainer.className = 'todo';
   itemContainer.draggable = true;
+
+  itemContainer.addEventListener('dragstart', (e) => {
+    itemContainer.classList.add('draggable');
+    itemContainer.style.opacity = 0.4;
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', e.target.innerHTML);
+  });
+
+  itemContainer.addEventListener('dragend', () => {
+    itemContainer.style.opacity = 1;
+    itemContainer.classList.remove('draggable');
+  });
+
+  todoUl.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    const draggable = document.querySelector('.draggable');
+    todoUl.appendChild(draggable);
+  });
+  itemContainer.addEventListener('dragenter', () => {
+    itemContainer.classList.add('over');
+  });
+  itemContainer.addEventListener('dragleave', () => {
+    itemContainer.classList.remove('over');
+  });
 
   const itemForm = document.createElement('form');
   itemForm.className = 'todo_form';
@@ -15,6 +40,9 @@ const createTodo = (item, todoListss, todoUl) => {
   checkBox.type = 'checkbox';
   checkBox.checked = item.completed;
   checkBox.className = 'checkbox';
+  checkBox.addEventListener('click', () => {
+    selectTodo(checkBox, todoTitle, item, itemContainer);
+  });
   const option = document.createElement('span');
   option.className = 'material-symbols-outlined';
   option.innerText = item.icon;
