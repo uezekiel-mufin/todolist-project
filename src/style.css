@@ -113,6 +113,6 @@ button {
   cursor: pointer;
 }
 
-/* .over {
+.over {
   border: 3px dotted #666;
-} */
+}

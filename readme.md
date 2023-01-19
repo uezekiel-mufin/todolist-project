@@ -46,6 +46,10 @@
 
 - **ES6 Modules**
 - **Webpack**
+- **Adding and Removing Todo Task**
+- **Updating To-do description**
+- **Deleting all completed Todos**
+- **Drag and Dropping Todo tasks**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
