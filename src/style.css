@@ -25,6 +25,7 @@ main {
   display: flex;
   gap: 1rem;
   align-items: center;
+  flex: 1;
 }
 
 .add_todo {
@@ -57,6 +58,21 @@ main {
   margin: 0;
   color: rgb(41, 40, 40);
   font-weight: 400;
+  width: 100%;
+  border: none;
+  flex: 1;
+  height: max-content;
+  background-color: inherit;
+  padding: 10px 5px;
+  font-size: 1.3rem;
+}
+
+.todo_form {
+  flex: 1;
+}
+
+.todo_title:focus {
+  outline: none;
 }
 
 .checkbox {
@@ -75,6 +91,10 @@ ul {
   font-size: 100px;
 }
 
+#delete_icon {
+  cursor: pointer;
+}
+
 button {
   width: 100%;
   padding: 10px;
@@ -87,5 +107,12 @@ button {
 .material-symbols-outlined {
   font-size: 2rem;
   color: gray;
+}
+
+.header .material-symbols-outlined {
   cursor: pointer;
 }
+
+/* .over {
+  border: 3px dotted #666;
+} */
