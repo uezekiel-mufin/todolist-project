@@ -11,12 +11,12 @@ export const deleteCompletedTodos = (todoListss, todoUl) => {
   idReset(newTodos);
   localStorage.setItem('todos', JSON.stringify(newTodos));
 
-  const elements = todoUl.children;
-  for (let i = 0; i < elements.length; i += 1) {
-    if (elements[i].id === 'completed') {
-      elements[i].remove();
+  const elements = [...todoUl.children];
+  elements.forEach((ele) => {
+    if (ele.id === 'completed') {
+      ele.remove();
     }
-  }
+  });
 };
 
 // functionality to mark a todo as completed
@@ -29,4 +29,23 @@ export const selectTodo = (checkBox, todoTitle, item, itemContainer) => {
     todoTitle.style.textDecoration = 'none';
     item.completed = false;
   }
+};
+
+// functionality for drag and drop
+
+export const getDragAfetrElement = (container, y) => {
+  const draggableElements = [
+    ...container.querySelectorAll('.todo:not(.draggable)'),
+  ];
+  return draggableElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset, element: child };
+      }
+      return closest;
+    },
+    { offset: Number.NEGATIVE_INFINITY },
+  ).element;
 };

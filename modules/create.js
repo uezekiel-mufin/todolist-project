@@ -1,5 +1,5 @@
 import { deleteTodo, updateTodo } from './crud.js';
-import { selectTodo } from './crud2.js';
+import { getDragAfetrElement, selectTodo } from './crud2.js';
 
 const createTodo = (item, todoListss, todoUl) => {
   const itemContainer = document.createElement('li');
@@ -21,13 +21,12 @@ const createTodo = (item, todoListss, todoUl) => {
   todoUl.addEventListener('dragover', (e) => {
     e.preventDefault();
     const draggable = document.querySelector('.draggable');
-    todoUl.appendChild(draggable);
-  });
-  itemContainer.addEventListener('dragenter', () => {
-    itemContainer.classList.add('over');
-  });
-  itemContainer.addEventListener('dragleave', () => {
-    itemContainer.classList.remove('over');
+    const afterElement = getDragAfetrElement(todoUl, e.clientY);
+    if (afterElement === null) {
+      todoUl.appendChild(draggable);
+    } else {
+      todoUl.insertBefore(draggable, afterElement);
+    }
   });
 
   const itemForm = document.createElement('form');

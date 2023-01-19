@@ -53,5 +53,3 @@ window.addEventListener('load', () => {
   displayTodos();
   return false;
 });
-
-console.log(todoListss);
