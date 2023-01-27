@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1674740825936" clover="3.2.0">
-  <project timestamp="1674740825936" name="All files">
+<coverage generated="1674802396565" clover="3.2.0">
+  <project timestamp="1674802396566" name="All files">
     <metrics statements="115" coveredstatements="57" conditionals="24" coveredconditionals="4" methods="23" coveredmethods="6" elements="162" coveredelements="67" complexity="0" loc="115" ncloc="115" packages="1" files="4" classes="4"/>
     <file name="addTodo.js" path="C:\Users\HP\Desktop\todolist-project\modules\addTodo.js">
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>

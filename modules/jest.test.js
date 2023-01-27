@@ -13,6 +13,8 @@ describe('TodoApp', () => {
   let todos = window.document.querySelectorAll('.todo');
 
   test('Add one new item to the DOM', () => {
+    document.body.innerHTML = `
+     <ul id="todoList"><li></li></ul>' `;
     const todoUl = document.getElementById('todoList');
     const todoListss = JSON.parse(window.localStorage.getItem('todos')) || [];
     addTodo('this is the first todo', 1, todoListss, todoUl);
@@ -21,6 +23,8 @@ describe('TodoApp', () => {
   });
 
   test('Add one new item to the localstorage', () => {
+    document.body.innerHTML = `
+     <ul id="todoList"><li></li></ul>' `;
     const todoUl = document.getElementById('todoList');
     const todoListss = JSON.parse(window.localStorage.getItem('todos')) || [];
     addTodo('this is the first todo', 1, todoListss, todoUl);
