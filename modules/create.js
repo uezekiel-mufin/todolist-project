@@ -3,6 +3,11 @@ import { getDragAfetrElement, selectTodo } from './crud2.js';
 
 const createTodo = (item, todoListss, todoUl) => {
   const itemContainer = document.createElement('li');
+  const itemForm = document.createElement('form');
+  const todoTitle = document.createElement('input');
+  const checkBox = document.createElement('input');
+  const option = document.createElement('span');
+
   itemContainer.className = 'todo';
   itemContainer.draggable = true;
 
@@ -29,20 +34,16 @@ const createTodo = (item, todoListss, todoUl) => {
     }
   });
 
-  const itemForm = document.createElement('form');
   itemForm.className = 'todo_form';
-  const todoTitle = document.createElement('input');
   todoTitle.className = 'todo_title';
   todoTitle.value = item.description;
   todoTitle.disabled = item.disabled;
-  const checkBox = document.createElement('input');
   checkBox.type = 'checkbox';
   checkBox.checked = item.completed;
   checkBox.className = 'checkbox';
   checkBox.addEventListener('click', () => {
     selectTodo(checkBox, todoTitle, item, itemContainer);
   });
-  const option = document.createElement('span');
   option.className = 'material-symbols-outlined';
   option.innerText = item.icon;
   option.style.cursor = option.innerText === 'more_vert' ? 'move' : 'pointer';

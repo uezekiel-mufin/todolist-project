@@ -26,6 +26,8 @@ export const updateTodo = (
   input.disabled = false;
   input.focus();
   itemContainer.style.background = 'rgb(224, 224, 149)';
+  itemContainer.id = 'update';
+  option.innerText = 'delete';
   todoListss.forEach((todo) => {
     todo.icon = 'more_vert';
     if (todo.id === id) {
@@ -39,6 +41,7 @@ export const updateTodo = (
           todo.description = input.value;
           input.disabled = true;
           todo.icon = 'more_vert';
+          itemContainer.id = '';
           option.innerText = 'more_vert';
           itemContainer.style.background = 'none';
           localStorage.setItem('todos', JSON.stringify(todoListss));
