@@ -1,6 +1,7 @@
 import './style.css';
 import createTodo from '../modules/create.js';
 import { deleteCompletedTodos } from '../modules/crud2.js';
+import addTodo from '../modules/addTodo.js';
 
 const form = document.getElementById('form');
 export const todo = document.querySelector('.add_todo');
@@ -20,15 +21,7 @@ class NewTodo {
   }
 
   add = () => {
-    const item = {
-      id: this.id,
-      description: this.description,
-      completed: false,
-      disabled: true,
-      icon: 'more_vert',
-    };
-    createTodo(item, todoListss, todoUl);
-    todoListss.push(item);
+    addTodo(this.description, this.id, todoListss, todoUl);
   };
 }
 
@@ -47,9 +40,8 @@ export const displayTodos = () => {
   });
 };
 
-// localStorage.removeItem('todos');
-
 window.addEventListener('load', () => {
   displayTodos();
+
   return false;
 });
